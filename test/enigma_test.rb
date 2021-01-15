@@ -10,35 +10,21 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_enigma_can_generate_key
-    skip
     enigma = Enigma.new
-    enigma.stubs(:encrypt).returns({
-                                    encryption: "Foo Bar",
-                                    key: "01592",
-                                    date: "011521"
-                                  })
-    assert_equal "01592", enigma.generate_key
+    expected = enigma.generate_key
+    assert_equal 5, expected.length
+    assert_equal String, expected.class
   end
 
-  def test_enigma_can_find_todays_date
+  def test_enigma_can_encrypt
     skip
     enigma = Enigma.new
-    enigma.stubs(:encrypt).returns({
-                                    encryption: "Foo Bar",
-                                    key: "01592",
-                                    date: "011521"
-                                  })
-    assert_equal "01592", enigma.generate_key
-  end
+    expected = {
+                encryption: "keder ohulw",
+                key: "02715",
+                date: "040895"
+               }
 
-  def test_enigma_can_encrypt_message
-    skip
-    enigma = Enigma.new
-    enigma.encrypt({
-                    encryption: "Foo Bar",
-                    key: "11111",
-                    date: "011521"
-                  })
-    assert_equal "Foo Bar"
+    assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 end
