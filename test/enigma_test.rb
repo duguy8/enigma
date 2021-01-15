@@ -16,6 +16,11 @@ class EnigmaTest < Minitest::Test
     assert_equal String, expected.class
   end
 
+  def test_convert_current_date_to_correct_format
+    enigma = Enigma.new
+    assert_equal "011521", enigma.generate_date
+  end
+
   def test_enigma_can_encrypt
     skip
     enigma = Enigma.new
