@@ -11,11 +11,10 @@ include Generator
 
   def encrypt(phrase, key = @random_key, date = @current_date)
     original = Encryption.new(phrase, key, date)
-    encrypted = original.rotate
-    # encrypted = to_encrypt.rotate
-    # encrypted
-    #calculate_key by taking key and date
-    #use each with index on phrase
-    # @phrase.join("").to_s
+    encrypted = {
+                  encryption: original.rotate,
+                  key: key,
+                  date: date
+                }
   end
 end

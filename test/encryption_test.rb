@@ -39,24 +39,35 @@ class EncryptionTest < Minitest::Test
 
   def test_deconstruct_phrase
     encryption = Encryption.new("hello world", "02715", "040895")
-    expected = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+    expected = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
     assert_equal expected, encryption.deconstruct("hello world")
   end
 
   def test_first_rotation
     encryption = Encryption.new("hello world", "02715", "040895")
-    expected = ["k", "e", "l", "l", "r", " ", "w", "o", "u", "l", "d"]
+    expected = [["k", "e", "l", "l"], ["r", " ", "w", "o"], ["u", "l", "d"]]
     assert_equal expected, encryption.first_rotation
   end
 
   def test_second_rotation
     encryption = Encryption.new("hello world", "02715", "040895")
-    expected = ["k", "e", "l", "l", "r", " ", "w", "o", "u", "l", "d"]
+    expected = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
+    assert_equal expected, encryption.second_rotation
+  end
 
+  def test_third_rotation
+    encryption = Encryption.new("hello world", "02715", "040895")
+    expected = [["h", "e", "d", "l"], ["o", " ", "o", "o"], ["r", "l", "w"]]
+    assert_equal expected, encryption.third_rotation
+  end
+
+  def test_fourth_rotation
+    encryption = Encryption.new("hello world", "02715", "040895")
+    expected = [["h", "e", "l", "e"], ["o", " ", "w", "h"], ["r", "l", "d"]]
+    assert_equal expected, encryption.fourth_rotation
   end
 
   def test_rotation_of_hello_world
-    skip
     encryption = Encryption.new("hello world", "02715", "040895")
     expected = "keder ohulw"
     assert_equal expected, encryption.rotate
