@@ -19,5 +19,17 @@ class EnigmaTest < Minitest::Test
                }
 
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
+    assert_equal Hash, enigma.encrypt("hello world", "02715", "040895").class
+  end
+
+  def test_enigma_works_with_only_phrase_and_key
+    enigma = Enigma.new
+    expected = {
+                encryption: "keder ohulw",
+                key: "02715",
+                date: "010101"
+               }
+    refute expected == enigma.encrypt("hello world", "02715")
+    assert_equal 3, enigma.encrypt("hello world", "02715").count
   end
 end

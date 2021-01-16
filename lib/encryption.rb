@@ -24,63 +24,25 @@ include Generator
   end
 
   def rotate
-    first_rotation
-    second_rotation
-    third_rotation
+    first_rotation.join("").to_s
+    second_rotation.join("").to_s
+    third_rotation.join("").to_s
     fourth_rotation.join("").to_s
   end
 
   def first_rotation
-    @phrase.each_with_index do |element, index|
-      new_index = @character_set.find_index(element[0]) + @a_key
-      if new_index > 27
-        adjusted_index = (new_index % @character_set.length)
-        element[0].replace(@character_set[adjusted_index])
-      else
-      element[0].replace(@character_set[new_index])
-      end
-    end
+    generate_rotation(@a_key, 0)
   end
 
   def second_rotation
-    @phrase.each_with_index do |element, index|
-      if element.length >= 2
-        new_index = @character_set.find_index(element[1]) + @b_key
-        if new_index > 27
-          adjusted_index = (new_index % @character_set.length)
-          element[1].replace(@character_set[adjusted_index])
-        else
-          element[1].replace(@character_set[new_index])
-        end
-      end
-    end
+    generate_rotation(@b_key, 1)
   end
 
   def third_rotation
-    @phrase.each_with_index do |element, index|
-      if element.length >= 3
-        new_index = @character_set.find_index(element[2]) + @c_key
-        if new_index > 27
-          adjusted_index = (new_index % @character_set.length)
-          element[2].replace(@character_set[adjusted_index])
-        else
-          element[2].replace(@character_set[new_index])
-        end
-      end
-    end
+    generate_rotation(@c_key, 2)
   end
 
   def fourth_rotation
-    @phrase.each_with_index do |element, index|
-      if element.length == 4
-        new_index = @character_set.find_index(element[3]) + @d_key
-        if new_index > 27
-          adjusted_index = (new_index % @character_set.length)
-          element[3].replace(@character_set[adjusted_index])
-        else
-          element[3].replace(@character_set[new_index])
-        end
-      end
-    end
+    generate_rotation(@d_key, 3)
   end
 end
