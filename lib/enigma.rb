@@ -1,23 +1,24 @@
 require 'date'
+require './lib/generator'
 
 class Enigma
+  include Generator
+  attr_reader :a_key,
+              :b_key,
+              :c_key,
+              :d_key
 
-  def encrypt(phrase)
-
+  def encrypt(phrase, key, date)
+    #calculate_key by taking key and date
+    generate_key(key, date)
+    # require "pry"; binding.pry
   end
 
-  def generate_date
-    current_time = Time.now
-    date = current_time.to_s.split[0].scan(/\w/)
-    year = date[2].concat(date[3])
-    month = date[6].concat(date[7])
-    day = date[4].concat(date[5])
-    "#{day}#{month}#{year}"
+  def generate_offsets(date)
+    (date.to_i * date.to_i).to_s[6..9]
   end
 
-  def generate_key
-    random_number = Random.new
-    key = random_number.rand(0...99999)
-    key.to_s.rjust(5, "0")
+  def generate_keys(key, date)
+    # @a = (key[0..1] + date[])
   end
 end
