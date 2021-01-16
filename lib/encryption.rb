@@ -12,6 +12,7 @@ include Generator
 
 
   def initialize(phrase, key, date)
+    @character_set = (("a".."z").to_a << " ")
     @phrase = deconstruct(phrase)
     @key = key
     @date = date
@@ -20,9 +21,22 @@ include Generator
   end
 
   def deconstruct(phrase)
-    # require "pry"; binding.pry
+    phrase.split("")
   end
 
   def rotate
+    first_rotation
+    second_roation
+    # third_rotation
+    # fourth_rotation.join("").to_s
   end
+
+  def first_rotation
+    new_phrase = @phrase.each_with_index do |element, index|
+      if index == 0 || index % 4 == 0
+        new_index = @character_set.find_index(element) + @a_key
+        element.replace(@character_set[new_index])
+        end
+      end
+    end
 end

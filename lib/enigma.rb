@@ -16,5 +16,6 @@ include Generator
     # encrypted
     #calculate_key by taking key and date
     #use each with index on phrase
+    # @phrase.join("").to_s
   end
 end
