@@ -23,16 +23,22 @@ class EnigmaTest < Minitest::Test
 
   def test_to_generate_offsets
     enigma = Enigma.new
-    assert_equal "1025", enigma.generate_offsets("040895")
+    expected = ["1", "0", "2", "5"]
+    assert_equal expected, enigma.generate_offsets("040895")
   end
 
   def test_to_generate_keys
     enigma = Enigma.new
-    enigma.generate_keys("02715", "1025")
+    enigma.generate_keys("02715", "040895")
     assert_equal 3, enigma.a_key
-    assert_equal 27, enigma.a_key
-    assert_equal 73, enigma.a_key
-    assert_equal 20, enigma.a_key
+    assert_equal 27, enigma.b_key
+    assert_equal 73, enigma.c_key
+    assert_equal 20, enigma.d_key
+  end
+
+  def test_string_rotation
+    enigma = Enigma.new
+    
   end
 
   def test_enigma_can_encrypt
