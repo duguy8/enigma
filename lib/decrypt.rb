@@ -3,9 +3,7 @@ require './lib/decryption'
 
 message = File.open(ARGV[0], 'r')
 
-incoming = message.read
-
-phrase = incoming.to_s.downcase
+phrase = (message.read).to_s.downcase
 
 enigma = Enigma.new
 
