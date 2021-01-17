@@ -20,7 +20,8 @@ class Decryption < Enigma
   end
 
   def deconstruct(phrase)
-    phrase.split("").each_slice(4).to_a
+    cleaned_phrase = phrase.delete "\n" "," "!" "&"
+    cleaned_phrase.split("").each_slice(4).to_a
   end
 
   def reversal

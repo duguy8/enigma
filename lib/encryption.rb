@@ -20,7 +20,7 @@ include Generator
   end
 
   def deconstruct(phrase)
-    cleaned_phrase = phrase.delete("\n")
+    cleaned_phrase = phrase.delete "\n" "," "!" "&"
     cleaned_phrase.split("").each_slice(4).to_a
   end
 
