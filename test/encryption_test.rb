@@ -37,9 +37,11 @@ class EncryptionTest < Minitest::Test
   end
 
   def test_deconstruct_phrase
-    encryption = Encryption.new("hello world", "02715", "040895")
+    encryption1 = Encryption.new("hello world", "02715", "040895")
+    encryption2 = Encryption.new("hello-world!&-", "02715", "040895")
     expected = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
-    assert_equal expected, encryption.deconstruct("hello world")
+    assert_equal expected, encryption1.deconstruct("hello world")
+    assert_equal expected, encryption2.deconstruct("hello -world!&-")
   end
 
   def test_full_rotation
