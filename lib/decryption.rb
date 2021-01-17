@@ -2,14 +2,14 @@ require 'date'
 require_relative 'generator'
 require_relative 'rotation'
 
-class Decryption
-  include Generator
-  include Rotation
+class Decryption 
+include Generator
+include Rotation
 
-    attr_reader :a_key,
-                :b_key,
-                :c_key,
-                :d_key
+  attr_reader :a_key,
+              :b_key,
+              :c_key,
+              :d_key
 
   def initialize(phrase, key, date)
     @character_set = (("a".."z").to_a << " ")
