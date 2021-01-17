@@ -2,7 +2,7 @@ require 'date'
 require_relative 'generator'
 require_relative 'enigma'
 
-class Encryption < Enigma
+class Encryption 
 include Generator
 
   attr_reader :a_key,
