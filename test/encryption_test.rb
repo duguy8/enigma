@@ -1,7 +1,4 @@
 require './test/test_helper'
-# require 'minitest/autorun'
-# require 'minitest/pride'
-require 'mocha/minitest'
 require './lib/enigma'
 require './lib/encryption'
 
@@ -13,7 +10,7 @@ class EncryptionTest < Minitest::Test
 
   def test_can_generate_random_number
     encryption = Encryption.new("hello world", "02715", "040895")
-    expected = encryption.generate_random_number
+    expected = encryption.generate_number
     assert_equal 5, expected.length
     assert_equal String, expected.class
   end
@@ -45,28 +42,10 @@ class EncryptionTest < Minitest::Test
     assert_equal expected, encryption.deconstruct("hello world")
   end
 
-  def test_first_rotation
+  def test_full_rotation
     encryption = Encryption.new("hello world", "02715", "040895")
-    expected = [["k", "e", "l", "l"], ["r", " ", "w", "o"], ["u", "l", "d"]]
-    assert_equal expected, encryption.first_rotation
-  end
-
-  def test_second_rotation
-    encryption = Encryption.new("hello world", "02715", "040895")
-    expected = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
-    assert_equal expected, encryption.second_rotation
-  end
-
-  def test_third_rotation
-    encryption = Encryption.new("hello world", "02715", "040895")
-    expected = [["h", "e", "d", "l"], ["o", " ", "o", "o"], ["r", "l", "w"]]
-    assert_equal expected, encryption.third_rotation
-  end
-
-  def test_fourth_rotation
-    encryption = Encryption.new("hello world", "02715", "040895")
-    expected = [["h", "e", "l", "e"], ["o", " ", "w", "h"], ["r", "l", "d"]]
-    assert_equal expected, encryption.fourth_rotation
+    expected = [["k", "e", "d", "e"], ["r", " ", "o", "h"], ["u", "l", "w"]]
+    assert_equal expected, encryption.forward_rotation
   end
 
   def test_generate_rotation

@@ -1,6 +1,4 @@
 require './test/test_helper'
-# require 'minitest/autorun'
-# require 'minitest/pride'
 require 'mocha/minitest'
 require './lib/enigma'
 require './lib/encryption'
@@ -44,5 +42,31 @@ class EnigmaTest < Minitest::Test
                }
 
     assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
+  end
+
+  def test_encryption_with_todays_date
+    enigma = Enigma.new
+    enigma.stubs(:generate_date).returns("010121")
+    expected = enigma.encrypt("hello world", "02715")
+    assert_equal "010121", expected[:date]
+  end
+
+  def test_decryption_with_todays_date
+    enigma1 = Enigma.new
+    enigma2 = Enigma.new
+    enigma2.stubs(:generate_date).returns("090909")
+    encrypted = enigma1.encrypt("hello world", "02715", "040895")
+    expected = enigma2.decrypt(encrypted[:encryption], "02715")
+    assert_equal "090909", expected[:date]
+  end
+
+  def test_encryption_with_only_date
+    enigma = Enigma.new
+    enigma.stubs(:generate_date).returns("010693")
+    enigma.stubs(:generate_number).returns("10101")
+    expected = enigma.encrypt("hello world")
+    assert_equal "010693", expected[:date]
+    assert_equal "10101", expected[:key]
+    assert_equal Hash, expected.class
   end
 end

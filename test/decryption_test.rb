@@ -1,7 +1,4 @@
 require './test/test_helper'
-# require 'minitest/autorun'
-# require 'minitest/pride'
-require 'mocha/minitest'
 require './lib/enigma'
 require './lib/decryption'
 
@@ -13,7 +10,7 @@ class DecryptionTest < Minitest::Test
 
   def test_decrypt_can_generate_random_number
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
-    expected = decrypt.generate_random_number
+    expected = decrypt.generate_number
     assert_equal 5, expected.length
     assert_equal String, expected.class
   end
@@ -22,13 +19,6 @@ class DecryptionTest < Minitest::Test
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
     expected = ["1", "0", "2", "5"]
     assert_equal expected, decrypt.generate_offsets("040895")
-  end
-
-  def test_random_number_generation
-    decrypt = Decryption.new("keder ohulw", "02715", "040895")
-    expected = decrypt.generate_random_number
-    assert_equal 5, expected.length
-    assert_equal String, expected.class
   end
 
   def test_date_conversion
@@ -48,31 +38,18 @@ class DecryptionTest < Minitest::Test
     assert_equal (-23), decrypt.find_rshift(["k", "e", "d", "e"], 27, 1)
   end
 
-  def test_first_reversal
+  def test_convert_keys
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
-    expected = [["h", "e", "d", "e"], ["o", " ", "o", "h"], ["r", "l", "w"]]
-    assert_equal expected, decrypt.first_reversal
+    assert_instance_of Hash, decrypt.convert_keys
   end
 
-  def test_second_reversal
+  def test_backwards_rotation
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
-    expected = [["k", "e", "d", "e"], ["r", " ", "o", "h"], ["u", "l", "w"]]
-    assert_equal expected, decrypt.second_reversal
+    expected = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
+    assert_equal expected, decrypt.backwards_rotation
   end
 
-  def test_third_reversal
-    decrypt = Decryption.new("keder ohulw", "02715", "040895")
-    expected = [["k", "e", "l", "e"], ["r", " ", "w", "h"], ["u", "l", "d"]]
-    assert_equal expected, decrypt.third_reversal
-  end
-
-  def test_fourth_reversal
-    decrypt = Decryption.new("keder ohulw", "02715", "040895")
-    expected = [["k", "e", "d", "l"], ["r", " ", "o", "o"], ["u", "l", "w"]]
-    assert_equal expected, decrypt.fourth_reversal
-  end
-
-  def test_full_reversal
+  def test_reversal
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
     expected = "hello world"
     assert_equal expected, decrypt.reversal

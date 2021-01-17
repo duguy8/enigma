@@ -2,7 +2,7 @@ require 'date'
 require_relative 'generator'
 require_relative 'rotation'
 
-class Decryption 
+class Decryption
 include Generator
 include Rotation
 
@@ -21,14 +21,11 @@ include Rotation
   end
 
   def deconstruct(phrase)
-    cleaned_phrase = phrase.delete "\n" "," "!" "&"
+    cleaned_phrase = phrase.delete "\n" "," "!" "&" "'"
     cleaned_phrase.split("").each_slice(4).to_a
   end
 
   def reversal
-    first_reversal.join("").to_s
-    second_reversal.join("").to_s
-    third_reversal.join("").to_s
-    fourth_reversal.join("").to_s
+    backwards_rotation.join("").to_s
   end
 end

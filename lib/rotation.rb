@@ -1,34 +1,27 @@
 module Rotation
 
-  def first_rotation
-    generate_rotation(@a_key, 0)
+  def convert_keys
+      {
+        @a_key => 0,
+        @b_key => 1,
+        @c_key => 2,
+        @d_key => 3
+      }
   end
 
-  def second_rotation
-    generate_rotation(@b_key, 1)
+  def forward_rotation
+    new = []
+    convert_keys.each do |key, index|
+      new = generate_rotation(key, index)
+    end
+    new
   end
 
-  def third_rotation
-    generate_rotation(@c_key, 2)
-  end
-
-  def fourth_rotation
-    generate_rotation(@d_key, 3)
-  end
-
-  def first_reversal
-    generate_reversal(@a_key, 0)
-  end
-
-  def second_reversal
-    generate_reversal(@b_key, 1)
-  end
-
-  def third_reversal
-    generate_reversal(@c_key, 2)
-  end
-
-  def fourth_reversal
-    generate_reversal(@d_key, 3)
+  def backwards_rotation
+    new = []
+    convert_keys.each do |key, index|
+      new = generate_reversal(key, index)
+    end
+    new
   end
 end
