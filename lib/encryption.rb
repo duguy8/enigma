@@ -21,14 +21,11 @@ include Rotation
   end
 
   def deconstruct(phrase)
-    cleaned_phrase = phrase.delete "\n" "," "!" "&"
+    cleaned_phrase = phrase.delete "\n" "," "!" "&" "'"
     cleaned_phrase.split("").each_slice(4).to_a
   end
 
   def rotate
-    first_rotation.join("").to_s
-    second_rotation.join("").to_s
-    third_rotation.join("").to_s
-    fourth_rotation.join("").to_s
+    forward_rotation.join("").to_s
   end
 end

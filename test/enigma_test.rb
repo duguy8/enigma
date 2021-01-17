@@ -47,10 +47,11 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_random_number_generation
+    # skip
     enigma = Enigma.new
     encryption = enigma.encrypt("hello world")
     enigma.stubs(:encrypt).returns("10101")
     expected = enigma.generate_random_number
-    require "pry"; binding.pry
+    # require "pry"; binding.pry
   end
 end
