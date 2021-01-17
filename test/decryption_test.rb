@@ -1,7 +1,4 @@
 require './test/test_helper'
-# require 'minitest/autorun'
-# require 'minitest/pride'
-require 'mocha/minitest'
 require './lib/enigma'
 require './lib/decryption'
 
@@ -41,13 +38,18 @@ class DecryptionTest < Minitest::Test
     assert_equal (-23), decrypt.find_rshift(["k", "e", "d", "e"], 27, 1)
   end
 
+  def test_convert_keys
+    decrypt = Decryption.new("keder ohulw", "02715", "040895")
+    assert_instance_of Hash, decrypt.convert_keys
+  end
+
   def test_backwards_rotation
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
     expected = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
     assert_equal expected, decrypt.backwards_rotation
   end
 
-  def test_full_reversal
+  def test_reversal
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
     expected = "hello world"
     assert_equal expected, decrypt.reversal
