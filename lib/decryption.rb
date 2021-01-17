@@ -23,6 +23,13 @@ class Decryption < Enigma
     phrase.split("").each_slice(4).to_a
   end
 
+  def reversal
+    first_reversal.join("").to_s
+    second_reversal.join("").to_s
+    third_reversal.join("").to_s
+    fourth_reversal.join("").to_s
+  end
+
   def first_reversal
     generate_reversal(@a_key, 0)
   end
@@ -33,5 +40,9 @@ class Decryption < Enigma
 
   def third_reversal
     generate_reversal(@c_key, 2)
+  end
+
+  def fourth_reversal
+    generate_reversal(@d_key, 3)
   end
 end

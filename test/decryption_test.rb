@@ -1,6 +1,6 @@
-# require './test/test_helper'
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/test_helper'
+# require 'minitest/autorun'
+# require 'minitest/pride'
 require 'mocha/minitest'
 require './lib/enigma'
 require './lib/decryption'
@@ -70,5 +70,11 @@ class DecryptionTest < Minitest::Test
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
     expected = [["k", "e", "d", "l"], ["r", " ", "o", "o"], ["u", "l", "w"]]
     assert_equal expected, decrypt.fourth_reversal
+  end
+
+  def test_full_reversal
+    decrypt = Decryption.new("keder ohulw", "02715", "040895")
+    expected = "hello world"
+    assert_equal expected, decrypt.reversal
   end
 end

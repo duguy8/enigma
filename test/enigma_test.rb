@@ -1,6 +1,6 @@
-# require './test/test_helper'
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/test_helper'
+# require 'minitest/autorun'
+# require 'minitest/pride'
 require 'mocha/minitest'
 require './lib/enigma'
 require './lib/encryption'
@@ -36,7 +36,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_enigma_can_decrypt
-    skip
     enigma = Enigma.new
     expected = {
                   decryption: "hello world",
