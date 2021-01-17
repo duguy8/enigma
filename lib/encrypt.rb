@@ -10,6 +10,18 @@ file = File.open(ARGV[0], 'r')
 
 incoming = file.read
 
-puts incoming
+to_encrypt = incoming.to_s.downcase
+
+enigma = Enigma.new
+
+encrypted = enigma.encrypt(to_encrypt)
 
 file.close
+
+writer = File.open(ARGV[1], 'w')
+
+writer.write(encrypted[:encryption])
+
+puts "Created #{'ARGV[1]'} with the key #{encrypted[:key]} and the date #{encrypted[:date]}"
+
+writer.close
