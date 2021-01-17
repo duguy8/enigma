@@ -13,7 +13,7 @@ class EncryptionTest < Minitest::Test
 
   def test_can_generate_random_number
     encryption = Encryption.new("hello world", "02715", "040895")
-    expected = encryption.generate_random_number
+    expected = encryption.generate_number
     assert_equal 5, expected.length
     assert_equal String, expected.class
   end
@@ -62,6 +62,4 @@ class EncryptionTest < Minitest::Test
     expected = "keder ohulw"
     assert_equal expected, encryption.rotate
   end
-
-  
 end

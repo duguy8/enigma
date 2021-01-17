@@ -13,7 +13,7 @@ class DecryptionTest < Minitest::Test
 
   def test_decrypt_can_generate_random_number
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
-    expected = decrypt.generate_random_number
+    expected = decrypt.generate_number
     assert_equal 5, expected.length
     assert_equal String, expected.class
   end
@@ -22,13 +22,6 @@ class DecryptionTest < Minitest::Test
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
     expected = ["1", "0", "2", "5"]
     assert_equal expected, decrypt.generate_offsets("040895")
-  end
-
-  def test_random_number_generation
-    decrypt = Decryption.new("keder ohulw", "02715", "040895")
-    expected = decrypt.generate_random_number
-    assert_equal 5, expected.length
-    assert_equal String, expected.class
   end
 
   def test_date_conversion

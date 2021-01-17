@@ -4,12 +4,7 @@ require_relative 'generator'
 class Enigma
 include Generator
 
-  def initialize
-    @random_key = generate_random_number
-    @current_date = generate_date
-  end
-
-  def encrypt(phrase, key = @random_key, date = @current_date)
+  def encrypt(phrase, key = generate_number, date = generate_date)
     original = Encryption.new(phrase, key, date)
     {
       encryption: original.rotate,
@@ -18,7 +13,7 @@ include Generator
     }
   end
 
-  def decrypt(phrase, key = @random_key, date = @current_date)
+  def decrypt(phrase, key = generate_number, date = generate_date)
     original = Decryption.new(phrase, key, date)
     {
       decryption: original.reversal,

@@ -1,6 +1,6 @@
 module Generator
 
-  def generate_random_number
+  def generate_number
     random_number = Random.new
     key = random_number.rand(0...99999)
     @random_key = key.to_s.rjust(5, "0")
