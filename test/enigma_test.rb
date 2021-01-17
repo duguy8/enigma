@@ -67,4 +67,14 @@ class EnigmaTest < Minitest::Test
     assert_equal "10101", expected[:key]
     assert_equal Hash, expected.class
   end
+
+  def test_encryption_with_another_key
+    enigma = Enigma.new
+    expected = {
+                encryption: "vjqtbeaweqihssi",
+                key: "08304",
+                date: "291018"
+               }
+    assert_equal expected, enigma.encrypt("hello world end", "08304", "291018")
+  end
 end

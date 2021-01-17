@@ -12,7 +12,7 @@ module Generator
   end
 
   def generate_offsets(date)
-    ((date.to_i * date.to_i).to_s[6..9]).scan(/\w/)
+    ((date.to_i * date.to_i).to_s[-4..-1]).scan(/\w/)
   end
 
   def generate_keys(key, date)
