@@ -46,12 +46,12 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
   end
 
-  def test_random_number_generation
-    # skip
-    enigma = Enigma.new
-    encryption = enigma.encrypt("hello world")
-    enigma.stubs(:encrypt).returns("10101")
-    expected = enigma.generate_random_number
-    # require "pry"; binding.pry
-  end
+  # def test_random_number_generation
+  #   # skip
+  #   enigma = Enigma.new
+  #   encryption = enigma.encrypt("hello world")
+  #   enigma.stubs(:encrypt).returns("10101")
+  #   expected = enigma.generate_random_number
+  #   # require "pry"; binding.pry
+  # end
 end

@@ -11,19 +11,19 @@ include Generator
 
   def encrypt(phrase, key = @random_key, date = @current_date)
     original = Encryption.new(phrase, key, date)
-                {
-                  encryption: original.rotate,
-                  key: key,
-                  date: date
-                }
+    {
+      encryption: original.rotate,
+      key: key,
+      date: date
+    }
   end
 
   def decrypt(phrase, key = @random_key, date = @current_date)
     original = Decryption.new(phrase, key, date)
-                {
-                  decryption: original.reversal,
-                  key: key,
-                  date: date
-                }
+    {
+      decryption: original.reversal,
+      key: key,
+      date: date
+    }
   end
 end

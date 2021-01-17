@@ -26,9 +26,6 @@ include Rotation
   end
 
   def reversal
-    first_reversal.join("").to_s
-    second_reversal.join("").to_s
-    third_reversal.join("").to_s
-    fourth_reversal.join("").to_s
+    backwards_rotation.join("").to_s
   end
 end
