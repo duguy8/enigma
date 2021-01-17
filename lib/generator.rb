@@ -23,15 +23,28 @@ module Generator
   end
 
   def generate_rotation(key, phrase_index)
+    # @phrase.each_with_index do |element, index|
+    #   if element[phrase_index] != nil
+    #     new_index = @character_set.find_index(element[phrase_index]) + key
+    #     if new_index > 27
+    #       adjusted_index = (new_index % @character_set.length)
+    #       element[phrase_index].replace(@character_set[adjusted_index])
+    #     else
+    #       element[phrase_index].replace(@character_set[new_index])
+    #     end
+    #   end
+    # end
+  end
+
+  def find_rshift(element, key, phrase_index)
+    @character_set.find_index(element[phrase_index]) - key
+  end
+
+  def generate_reversal(key, phrase_index)
     @phrase.each_with_index do |element, index|
       if element[phrase_index] != nil
-        new_index = @character_set.find_index(element[phrase_index]) + key
-        if new_index > 27
-          adjusted_index = (new_index % @character_set.length)
-          element[phrase_index].replace(@character_set[adjusted_index])
-        else
-          element[phrase_index].replace(@character_set[new_index])
-        end
+        new = @character_set.rotate(find_rshift(element, key, phrase_index))
+        @phrase[index][phrase_index].replace(new.first)
       end
     end
   end

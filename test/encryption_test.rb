@@ -20,7 +20,6 @@ class EncryptionTest < Minitest::Test
 
   def test_convert_current_date_to_correct_format
     encryption = Encryption.new("hello world", "02715", "040895")
-
     assert_equal 6, encryption.generate_date.length
     refute "040895" == encryption.generate_date
   end
