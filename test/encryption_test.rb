@@ -1,5 +1,6 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/test_helper'
+# require 'minitest/autorun'
+# require 'minitest/pride'
 require 'mocha/minitest'
 require './lib/enigma'
 require './lib/encryption'
@@ -19,7 +20,8 @@ class EncryptionTest < Minitest::Test
 
   def test_convert_current_date_to_correct_format
     encryption = Encryption.new("hello world", "02715", "040895")
-    assert_equal "011621", encryption.generate_date
+    assert_equal 6, encryption.generate_date.length
+    refute "040895" == encryption.generate_date
   end
 
   def test_to_generate_offsets
@@ -65,6 +67,12 @@ class EncryptionTest < Minitest::Test
     encryption = Encryption.new("hello world", "02715", "040895")
     expected = [["h", "e", "l", "e"], ["o", " ", "w", "h"], ["r", "l", "d"]]
     assert_equal expected, encryption.fourth_rotation
+  end
+
+  def test_generate_rotation
+    encryption = Encryption.new("h", "02715", "040895")
+    expected = [["k"]]
+    assert_equal expected, encryption.generate_rotation(3, 0)
   end
 
   def test_rotation_of_hello_world

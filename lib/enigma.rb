@@ -17,4 +17,13 @@ include Generator
                   date: date
                 }
   end
+
+  def decrypt(phrase, key = @random_key, date = @current_date)
+    original = Decryption.new(phrase, key, date)
+    decrypted = {
+                  decryption: original.reversal,
+                  key: key,
+                  date: date
+                }
+  end
 end
