@@ -1,17 +1,17 @@
 require './lib/enigma'
 require './lib/encryption'
 
-file = File.open(ARGV[0], 'r')
+message = File.open(ARGV[0], 'r')
 
-incoming = file.read
+incoming = message.read
 
-to_encrypt = incoming.to_s.downcase
+phrase = incoming.to_s.downcase
 
 enigma = Enigma.new
 
-encrypted = enigma.encrypt(to_encrypt)
+encrypted = enigma.encrypt(phrase)
 
-file.close
+message.close
 
 writer = File.open(ARGV[1], 'w')
 
