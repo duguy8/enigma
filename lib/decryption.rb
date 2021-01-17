@@ -3,8 +3,8 @@ require_relative 'generator'
 require_relative 'rotation'
 
 class Decryption
-include Generator
-include Rotation
+  include Generator
+  include Rotation
 
   attr_reader :a_key,
               :b_key,
@@ -21,8 +21,7 @@ include Rotation
   end
 
   def deconstruct(phrase)
-    cleaned_phrase = phrase.delete "\n" "," "!" "&" "'" "-"
-    cleaned_phrase.split("").each_slice(4).to_a
+    phrase.split('').each_slice(4).to_a
   end
 
   def reversal

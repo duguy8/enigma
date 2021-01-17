@@ -32,7 +32,8 @@ module Generator
 
   def generate_rotation(key, phrase_index)
     @phrase.each_with_index do |element, index|
-      if element[phrase_index] != nil
+      if element[phrase_index] != nil &&
+      @character_set.include?(element[phrase_index])
         new = @character_set.rotate(find_shift(element, key, phrase_index))
         @phrase[index][phrase_index].replace(new.first)
       end
@@ -41,7 +42,8 @@ module Generator
 
   def generate_reversal(key, phrase_index)
     @phrase.each_with_index do |element, index|
-      if element[phrase_index] != nil
+      if element[phrase_index] != nil &&
+      @character_set.include?(element[phrase_index])
         new = @character_set.rotate(find_rshift(element, key, phrase_index))
         @phrase[index][phrase_index].replace(new.first)
       end

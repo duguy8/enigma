@@ -3,6 +3,7 @@ require 'mocha/minitest'
 require './lib/enigma'
 require './lib/encryption'
 require './lib/decryption'
+require './lib/cracking'
 
 class EnigmaTest < Minitest::Test
   def test_it_exists
@@ -76,5 +77,49 @@ class EnigmaTest < Minitest::Test
                 date: "291018"
                }
     assert_equal expected, enigma.encrypt("hello world end", "08304", "291018")
+  end
+
+  def test_encryption_with_special_characters
+    enigma = Enigma.new
+    expected = {
+      encryption: "keder-ohulw",
+      key: "02715",
+      date: "040895"
+    }
+    assert_equal expected, enigma.encrypt("hello-world", "02715", "040895")
+  end
+
+  def test_decryption_with_special_characters
+    enigma = Enigma.new
+    expected = {
+      decryption: "hello-world!",
+      key: "02715",
+      date: "040895"
+    }
+    assert_equal expected, enigma.decrypt("keder-ohulw!", "02715", "040895")
+  end
+
+  def test_crack_with_a_date
+    skip
+    enigma = Enigma.new
+    expected = {
+                decryption: "hello world end",
+                date: "291018",
+                key: "08304"
+               }
+    assert_equal expected, enigma.crack("vjqtbeaweqihssi", "291018")
+  end
+
+  def test_crack_with_current_date
+    skip
+    enigma = Enigma.new
+    enigma.stubs(:generate_date).returns("010693")
+    enigma.stubs(:generate_number).returns("10101")
+    expected = {
+                decryption: "hello world end",
+                date: "010693",
+                key: "10101"
+               }
+    assert_equal expected, enigma.crack("vjqtbeaweqihssi")
   end
 end
