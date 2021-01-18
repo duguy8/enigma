@@ -3,8 +3,8 @@ require_relative 'generator'
 require_relative 'rotation'
 
 class Encryption
-include Generator
-include Rotation
+  include Generator
+  include Rotation
 
   attr_reader :a_key,
               :b_key,
@@ -21,11 +21,10 @@ include Rotation
   end
 
   def deconstruct(phrase)
-    cleaned_phrase = phrase.delete "\n" "," "!" "&" "'"
-    cleaned_phrase.split("").each_slice(4).to_a
+    phrase.downcase.split('').each_slice(4).to_a
   end
 
-  def rotate
+  def combine_rotation
     forward_rotation.join("").to_s
   end
 end

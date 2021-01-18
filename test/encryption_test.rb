@@ -1,6 +1,6 @@
 require './test/test_helper'
-require './lib/enigma'
 require './lib/encryption'
+require './lib/enigma'
 
 class EncryptionTest < Minitest::Test
   def test_it_exists
@@ -37,9 +37,12 @@ class EncryptionTest < Minitest::Test
   end
 
   def test_deconstruct_phrase
-    encryption = Encryption.new("hello world", "02715", "040895")
-    expected = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
-    assert_equal expected, encryption.deconstruct("hello world")
+    encryption1 = Encryption.new("hello world", "02715", "040895")
+    encryption2 = Encryption.new("hello world!", "02715", "040895")
+    expected1 = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d"]]
+    expected2 = [["h", "e", "l", "l"], ["o", " ", "w", "o"], ["r", "l", "d", "!"]]
+    assert_equal expected1, encryption1.deconstruct("hello world")
+    assert_equal expected2, encryption2.deconstruct("hello world!")
   end
 
   def test_full_rotation
@@ -57,6 +60,18 @@ class EncryptionTest < Minitest::Test
   def test_rotation_of_hello_world
     encryption = Encryption.new("hello world", "02715", "040895")
     expected = "keder ohulw"
-    assert_equal expected, encryption.rotate
+    assert_equal expected, encryption.combine_rotation
+  end
+
+  def test_encryption_works_with_enigma
+    enigma = Enigma.new
+    expected = {
+                encryption: "keder ohulw",
+                key: "02715",
+                date: "040895"
+               }
+    encryption = enigma.encrypt("hello world", "02715", "040895")
+    assert_equal expected, encryption
+    assert_equal Hash, encryption.class
   end
 end
