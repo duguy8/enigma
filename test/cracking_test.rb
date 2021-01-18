@@ -1,11 +1,23 @@
 require './test/test_helper'
 require './lib/cracking'
-require './lib/enigma'
 
 class CrackingTest < Minitest::Test
   def test_it_exists
     crack = Cracking.new("encryption", "010693")
     assert_instance_of Cracking, crack
+  end
+
+  def test_crack_generate_random_number
+    crack = Cracking.new("encryption", "010693")
+    expected = crack.generate_number
+    assert_equal 5, expected.length
+    assert_equal String, expected.class
+  end
+
+  def test_crack_date
+    crack = Cracking.new("encryption", "010693")
+    assert_equal 6, crack.generate_date.length
+    refute "040895" == crack.generate_date
   end
 
   def test_can_find_shift
@@ -14,6 +26,12 @@ class CrackingTest < Minitest::Test
     assert_equal 5, crack.find_crack_shift('s', 'n')
     assert_equal 14, crack.find_crack_shift('s', 'e')
     assert_equal (-19), crack.find_crack_shift('h', ' ')
+  end
+
+  def test_can_generate_offsets
+    crack = Cracking.new("hssi", "291018")
+    expected = ["6", "3", "2", "4"]
+    assert_equal expected, crack.generate_offsets("291018")
   end
 
   def test_shifts_can_be_assigned_to_keys
