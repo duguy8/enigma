@@ -1,9 +1,8 @@
 require 'date'
 require_relative 'generator'
 require_relative 'rotation'
-require_relative 'decryption'
 
-class Cracking < Decryption
+class Cracking
   include Generator
   include Rotation
 
@@ -18,6 +17,10 @@ class Cracking < Decryption
     @date = date
     @offsets = generate_offsets(date)
     @help = [' ', 'e', 'n', 'd']
+  end
+
+  def deconstruct(phrase)
+    phrase.downcase.split('').each_slice(4).to_a
   end
 
   def rotate_back

@@ -1,4 +1,5 @@
 require './test/test_helper'
+require './lib/decryption'
 require './lib/encryption'
 require './lib/enigma'
 
@@ -73,5 +74,21 @@ class EncryptionTest < Minitest::Test
     encryption = enigma.encrypt("hello world", "02715", "040895")
     assert_equal expected, encryption
     assert_equal Hash, encryption.class
+  end
+
+  def test_encryption_and_decryption
+    enigma = Enigma.new
+    expected1 = {
+                  encryption: "keder ohulw",
+                  key: "02715",
+                  date: "040895"
+                }
+    expected2 = {
+                  decryption: "hello world",
+                  key: "02715",
+                  date: "040895"
+                }
+    assert_equal expected1, enigma.encrypt("hello world", "02715", "040895")
+    assert_equal expected2, enigma.decrypt("keder ohulw", "02715", "040895")
   end
 end
