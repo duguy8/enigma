@@ -28,6 +28,7 @@ module Generator
 
   def find_rshift(element, key, phrase_index)
     @character_set.find_index(element[phrase_index]) - key
+    # require "pry"; binding.pry
   end
 
   def generate_rotation(key, phrase_index)
