@@ -8,8 +8,11 @@ class CrackingTest < Minitest::Test
     assert_instance_of Cracking, crack
   end
 
-  def test_crack_can_rotate_back
-    crack = Cracking.new("vjqtbeaweqihssi", "291018")
-    assert_equal "hello world end", crack.rotate_back
+  def test_can_find_shift
+    crack = Cracking.new("hssi", "291018")
+    assert_equal 5, crack.find_crack_shift('i', 'd')
+    assert_equal 5, crack.find_crack_shift('s', 'n')
+    assert_equal 14, crack.find_crack_shift('s', 'e')
+    assert_equal -19, crack.find_crack_shift('h', ' ')
   end
 end

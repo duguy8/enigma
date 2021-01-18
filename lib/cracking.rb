@@ -17,13 +17,21 @@ class Cracking < Decryption
     @phrase = deconstruct(phrase)
     @date = date
     @offsets = generate_offsets(date)
-    # @cracking_keys = cracking_keys
   end
 
-  # def cracking_keys
-  #   @a_key =
-  #   @b_key =
-  #   @c_key =
-  #   @d_key =
-  # end
+  def rotate_back
+    crack_rotation
+  end
+
+  def find_crack_shift(element, hint)
+    new = @character_set.find_index(element)
+    new - @character_set.find_index(hint)
+  end
+
+  def cracking_keys
+    @character_set.rotate(find_crack_shift(@phrase.flatten.last[-1], 'd'))
+    @character_set.rotate(find_crack_shift(@phrase.flatten.last[-2], 'n'))
+    @character_set.rotate(find_crack_shift(@phrase.flatten.last[-3], 'e'))
+    @character_set.rotate(find_crack_shift(@phrase.flatten.last[-4], ' '))
+  end
 end
