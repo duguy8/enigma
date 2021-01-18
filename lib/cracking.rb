@@ -17,18 +17,13 @@ class Cracking < Decryption
     @phrase = deconstruct(phrase)
     @date = date
     @offsets = generate_offsets(date)
-    @cracking_keys = cracking_keys
-    # require "pry"; binding.pry
+    # @cracking_keys = cracking_keys
   end
 
-  def cracking_keys
-    @a_key = 27
-    @b_key = 5
-    @c_key = 14
-    @d_key = 4
-  end
-
-  def rotate_back
-    backwards_rotation.join("").to_s
-  end
+  # def cracking_keys
+  #   @a_key =
+  #   @b_key =
+  #   @c_key =
+  #   @d_key =
+  # end
 end
