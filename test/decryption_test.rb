@@ -52,6 +52,6 @@ class DecryptionTest < Minitest::Test
   def test_reversal
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
     expected = "hello world"
-    assert_equal expected, decrypt.reversal
+    assert_equal expected, decrypt.combine_reversal
   end
 end

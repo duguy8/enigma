@@ -30,12 +30,4 @@ class CrackingTest < Minitest::Test
     expected = "hello world end"
     assert_equal expected, crack.rotate_back
   end
-
-  def test_it_can_generate_key
-    skip
-    crack = Cracking.new("vjqtbeaweqihssi", "291018")
-    crack.assign_shifts
-    expected = "08304"
-    assert_equal expected, crack.generate_key("291018")
-  end
 end

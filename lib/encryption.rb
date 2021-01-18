@@ -24,7 +24,7 @@ class Encryption
     phrase.downcase.split('').each_slice(4).to_a
   end
 
-  def rotate
+  def combine_rotation
     forward_rotation.join("").to_s
   end
 end

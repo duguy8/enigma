@@ -24,7 +24,7 @@ class Decryption
     phrase.downcase.split('').each_slice(4).to_a
   end
 
-  def reversal
+  def combine_reversal
     backwards_rotation.join("").to_s
   end
 end

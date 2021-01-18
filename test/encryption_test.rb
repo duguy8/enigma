@@ -60,6 +60,6 @@ class EncryptionTest < Minitest::Test
   def test_rotation_of_hello_world
     encryption = Encryption.new("hello world", "02715", "040895")
     expected = "keder ohulw"
-    assert_equal expected, encryption.rotate
+    assert_equal expected, encryption.combine_rotation
   end
 end
