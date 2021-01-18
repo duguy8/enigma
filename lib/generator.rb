@@ -2,8 +2,7 @@ module Generator
 
   def generate_number
     random_number = Random.new
-    key = random_number.rand(0...99999)
-    @random_key = key.to_s.rjust(5, "0")
+    @random_key = (random_number.rand(0...99999)).to_s.rjust(5, "0")
   end
 
   def generate_date
@@ -12,7 +11,11 @@ module Generator
   end
 
   def generate_offsets(date)
-    ((date.to_i * date.to_i).to_s[-4..-1]).scan(/\w/)
+    new = Array.new
+    ((date.to_i * date.to_i).to_s[-4..-1]).each_char do |number|
+      new.push(number)
+    end
+    new
   end
 
   def generate_keys(key, date)

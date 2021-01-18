@@ -1,6 +1,6 @@
 require './test/test_helper'
-require './lib/enigma'
 require './lib/cracking'
+require './lib/enigma'
 
 class CrackingTest < Minitest::Test
   def test_it_exists

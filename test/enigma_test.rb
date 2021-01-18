@@ -108,28 +108,4 @@ class EnigmaTest < Minitest::Test
     }
     assert_equal expected, enigma.encrypt("HELLO WORLD", "02715", "040895")
   end
-
-  # def test_crack_with_a_date
-  #   skip
-  #   enigma = Enigma.new
-  #   expected = {
-  #               decryption: "hello world end",
-  #               date: "291018",
-  #               key: "08304"
-  #              }
-  #   assert_equal expected, enigma.crack("vjqtbeaweqihssi", "291018")
-  # end
-  #
-  # def test_crack_with_current_date
-  #   skip
-  #   enigma = Enigma.new
-  #   enigma.stubs(:generate_date).returns("010693")
-  #   enigma.stubs(:generate_number).returns("10101")
-  #   expected = {
-  #               decryption: "hello world end",
-  #               date: "010693",
-  #               key: "10101"
-  #              }
-  #   assert_equal expected, enigma.crack("vjqtbeaweqihssi")
-  # end
 end
