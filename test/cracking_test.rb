@@ -18,15 +18,14 @@ class CrackingTest < Minitest::Test
 
   def test_shifts_can_be_assigned_to_keys
     crack = Cracking.new("hssi", "291018")
-    crack.assign_shifts('hssi')
-    assert_equal 5, crack.a_key
-    assert_equal 5, crack.b_key
-    assert_equal 14, crack.c_key
+    crack.assign_shifts
     assert_equal (-19), crack.d_key
+    assert_equal 5, crack.c_key
+    assert_equal 32, crack.b_key
+    assert_equal 14, crack.a_key
   end
 
-  def test_it_can_crack
-    skip
+  def test_it_can_rotate_back
     crack = Cracking.new("vjqtbeaweqihssi", "291018")
     expected = "hello world end"
     assert_equal expected, crack.rotate_back
