@@ -13,6 +13,8 @@ class Message
     case
     when ARGV.length < 4
       encrypt_option(phrase)
+    when ARGV.length == 4
+      decrypt_option(phrase)
     end
   end
 
@@ -28,6 +30,16 @@ class Message
     name = ARGV[1].to_s
     writer.write(encrypted[:encryption])
     puts "Created '#{name}' with the key #{encrypted[:key]} and the date #{encrypted[:date]}"
+    writer.close
+  end
+
+  def decrypt_option(phrase)
+    enigma = Enigma.new
+    decrypted = enigma.decrypt(phrase, ARGV[2], ARGV[3])
+    writer = File.open(ARGV[1], 'w')
+    name = ARGV[1].to_s
+    writer.write(decrypted[:decryption])
+    puts "Created '#{name}' with the key #{decrypted[:key]} and the date #{decrypted[:date]}"
     writer.close
   end
 end

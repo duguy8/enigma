@@ -1,2 +1,2 @@
-require './lib/message'
-new = Message.start(File.open(ARGV[0], 'r'))
+require_relative 'message'
+Message.start(File.open(ARGV[0], 'r'))
