@@ -22,12 +22,12 @@ class Enigma
     }
   end
 
-  def crack(phrase, date = generate_date)
-    original = Cracking.new(phrase, date)
-    {
-      decryption: original.rotate_back,
-      date: date,
-      key: "key"
-    }
-  end
+  # def crack(phrase, date = generate_date)
+  #   original = Cracking.new(phrase, date)
+  #   {
+  #     decryption: original.rotate_back,
+  #     date: date,
+  #     key: "key"
+  #   }
+  # end
 end

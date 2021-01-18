@@ -13,6 +13,22 @@ class CrackingTest < Minitest::Test
     assert_equal 5, crack.find_crack_shift('i', 'd')
     assert_equal 5, crack.find_crack_shift('s', 'n')
     assert_equal 14, crack.find_crack_shift('s', 'e')
-    assert_equal -19, crack.find_crack_shift('h', ' ')
+    assert_equal (-19), crack.find_crack_shift('h', ' ')
+  end
+
+  def test_shifts_can_be_assigned_to_keys
+    crack = Cracking.new("hssi", "291018")
+    crack.assign_shifts('hssi')
+    assert_equal 5, crack.a_key
+    assert_equal 5, crack.b_key
+    assert_equal 14, crack.c_key
+    assert_equal (-19), crack.d_key
+  end
+
+  def test_it_can_crack
+    skip
+    crack = Cracking.new("vjqtbeaweqihssi", "291018")
+    expected = "hello world end"
+    assert_equal expected, crack.rotate_back
   end
 end
