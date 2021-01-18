@@ -99,6 +99,16 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.decrypt("keder-ohulw!", "02715", "040895")
   end
 
+  def test_encryption_with_all_upcase
+    enigma = Enigma.new
+    expected = {
+      encryption: "keder ohulw",
+      key: "02715",
+      date: "040895"
+    }
+    assert_equal expected, enigma.encrypt("HELLO WORLD", "02715", "040895")
+  end
+
   def test_crack_with_a_date
     skip
     enigma = Enigma.new

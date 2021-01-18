@@ -21,7 +21,7 @@ class Decryption
   end
 
   def deconstruct(phrase)
-    phrase.split('').each_slice(4).to_a
+    phrase.downcase.split('').each_slice(4).to_a
   end
 
   def reversal
