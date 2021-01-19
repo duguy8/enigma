@@ -34,11 +34,6 @@ class DecryptionTest < Minitest::Test
     assert_equal expected, decrypt.deconstruct("keder ohulw")
   end
 
-  def test_find_rshift
-    decrypt = Decryption.new("keder ohulw", "02715", "040895")
-    assert_equal (-23), decrypt.find_rshift(["k", "e", "d", "e"], 27, 1)
-  end
-
   def test_convert_keys
     decrypt = Decryption.new("keder ohulw", "02715", "040895")
     assert_instance_of Hash, decrypt.convert_keys

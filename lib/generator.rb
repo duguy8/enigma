@@ -25,19 +25,12 @@ module Generator
     @d_key = (@offsets[3].to_i + key[3].concat(key[4]).to_i)
   end
 
-  def find_shift(element, key, phrase_index)
-    @character_set.find_index(element[phrase_index]) + key
-  end
-
-  def find_rshift(element, key, phrase_index)
-    @character_set.find_index(element[phrase_index]) - key
-  end
-
   def generate_rotation(key, phrase_index)
     @phrase.each_with_index do |element, index|
       if element[phrase_index] != nil &&
       @character_set.include?(element[phrase_index])
-        new = @character_set.rotate(find_shift(element, key, phrase_index))
+        new = @character_set.rotate(
+          @character_set.find_index(element[phrase_index]) + key)
         @phrase[index][phrase_index].replace(new.first)
       end
     end
@@ -47,7 +40,8 @@ module Generator
     @phrase.each_with_index do |element, index|
       if element[phrase_index] != nil &&
       @character_set.include?(element[phrase_index])
-        new = @character_set.rotate(find_rshift(element, key, phrase_index))
+        new = @character_set.rotate(
+          @character_set.find_index(element[phrase_index]) - key)
         @phrase[index][phrase_index].replace(new.first)
       end
     end
