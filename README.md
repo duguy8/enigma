@@ -12,6 +12,6 @@ For Ruby Conventions & Mechanics I believe the project is also is above expectat
 
 There is a test for every method in my test suites, and I used Simplecov along the way to monitor the coverage. As of my last pull request the coverage is at 100% for the rake file and each individual test. I also worked to address edge cases in my tests for encryption & decryption, testing for special characters, upcase, encrypting with only a phrase and no key or date. I have also implemented three tests with stubs to test for a current date to be generated, as well as a random key to be generated when one isn't supplied for encryption. Because of this I also believe my project is above expectations in this category as well. 
 
-Overall I had 52 commits & 7 pull requests, and have implemented everything that was given to us in the requirements. I would have liked to get further with the crack method, but believe I have put forward a solid effort to show for my final Mod1 project. 
+Overall I had 55 commits & 8 pull requests, and have implemented everything that was given to us in the requirements. I would have liked to get further with the crack method, but believe I have put forward a solid effort to show for my final Mod1 project. 
 
 
